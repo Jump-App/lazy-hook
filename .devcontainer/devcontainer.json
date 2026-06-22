@@ -1,5 +1,5 @@
 {
   "name": "lazy-hook",
-  "image": "ubuntu",
+  "build": { "dockerfile": "./Dockerfile" },
   "remoteUser": "ubuntu"
 }
