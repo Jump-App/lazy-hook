@@ -1,5 +1,6 @@
 {
   "name": "lazy-hook",
   "build": { "dockerfile": "./Dockerfile" },
-  "remoteUser": "ubuntu"
+  "remoteUser": "ubuntu",
+  "forwardPorts": [4000]
 }
