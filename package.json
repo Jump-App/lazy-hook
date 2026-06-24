@@ -6,7 +6,7 @@
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "phoenix_live_view": "^1.2.3",
+    "phoenix_live_view": "1.2.3",
     "typescript": "^5"
   },
   "scripts": {
