@@ -40,8 +40,6 @@ defmodule ExampleWeb do
     quote do
       use Phoenix.Controller, formats: [:html, :json]
 
-      use Gettext, backend: ExampleWeb.Gettext
-
       import Plug.Conn
 
       unquote(verified_routes())
@@ -79,13 +77,8 @@ defmodule ExampleWeb do
 
   defp html_helpers do
     quote do
-      # Translation
-      use Gettext, backend: ExampleWeb.Gettext
-
       # HTML escaping functionality
       import Phoenix.HTML
-      # Core UI components
-      import ExampleWeb.CoreComponents
 
       # Common modules used in templates
       alias Phoenix.LiveView.JS
