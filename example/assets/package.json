@@ -1,0 +1,8 @@
+{
+  "name": "example-assets",
+  "private": true,
+  "version": "0.0.1",
+  "devDependencies": {
+    "playwright": "^1.61.1"
+  }
+}

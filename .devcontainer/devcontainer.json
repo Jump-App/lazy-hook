@@ -2,5 +2,6 @@
   "name": "lazy-hook",
   "build": { "dockerfile": "./Dockerfile" },
   "remoteUser": "ubuntu",
-  "forwardPorts": [4000]
+  "forwardPorts": [4000],
+  "postCreateCommand": "./.devcontainer/setup.sh"
 }
