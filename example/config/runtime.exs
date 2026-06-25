@@ -10,6 +10,3 @@ import Config
 if System.get_env("PHX_SERVER") do
   config :example, ExampleWeb.Endpoint, server: true
 end
-
-config :example, ExampleWeb.Endpoint,
-  http: [port: String.to_integer(System.get_env("PORT", "4000"))]

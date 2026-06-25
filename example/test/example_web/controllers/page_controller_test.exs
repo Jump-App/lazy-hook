@@ -1,5 +1,5 @@
 defmodule ExampleWeb.PageControllerTest do
-  use ExampleWeb.Case
+  use ExampleWeb.UnitCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

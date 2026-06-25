@@ -1,4 +1,4 @@
-defmodule ExampleWeb.Case do
+defmodule ExampleWeb.UnitCase do
   use ExUnit.CaseTemplate
 
   using do
