@@ -5,8 +5,12 @@ RUN apt-get update \
     curl \
     git \
     inotify-tools \
+    sudo \
     unzip \
   && rm -rf /var/lib/apt/lists/*
+
+RUN usermod -aG sudo ubuntu \
+  && echo "ubuntu ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/ubuntu
 
 USER ubuntu
 

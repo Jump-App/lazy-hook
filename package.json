@@ -4,7 +4,8 @@
   "type": "module",
   "devDependencies": {
     "@happy-dom/global-registrator": "^20.10.6",
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "playwright": "^1.61.1"
   },
   "peerDependencies": {
     "phoenix_live_view": "1.2.3",
