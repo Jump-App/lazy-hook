@@ -1,15 +1,15 @@
-# lazy-hook
+# lazy-hook repo
 
-To install dependencies:
+The npm package lives in `./lazy-hook`.
+
+Run Bun commands from that directory:
 
 ```bash
+cd lazy-hook
 bun install
+bun run check
+bun run build
+bun run pack:local
 ```
 
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.3.14. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+That creates `lazy-hook-package.tgz` at the repository root, which the Phoenix example consumes as a real packaged install.

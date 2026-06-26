@@ -1,4 +1,5 @@
-import ExampleHook from "./hooks/example";
+import { lazyHook } from "lazy-hook";
+const ExampleHook = lazyHook(() => import("./hooks/example"));
 
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
 import "phoenix_html";

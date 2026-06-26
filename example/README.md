@@ -1,18 +1,10 @@
-# Example
+# LazyHook Example
 
-To start your Phoenix server:
+To start the Phoenix example application:
 
+* Run `cd ../lazy-hook && bun install && bun run pack:local` to create `../lazy-hook-package.tgz`
+* Run `cd assets && bun install` to install the packed package and Phoenix JS dependencies
 * Run `mix setup` to install and setup dependencies
-* Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+* Start Phoenix endpoint with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://phoenix.hexdocs.pm/deployment.html).
-
-## Learn more
-
-* Official website: https://www.phoenixframework.org/
-* Guides: https://phoenix.hexdocs.pm/overview.html
-* Docs: https://phoenix.hexdocs.pm
-* Forum: https://elixirforum.com/c/phoenix-forum
-* Source: https://github.com/phoenixframework/phoenix

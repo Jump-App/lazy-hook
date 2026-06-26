@@ -1,3 +1,4 @@
+Mix.Task.run("assets.deploy")
 {:ok, _} = PhoenixTest.Playwright.Supervisor.start_link()
 Application.put_env(:phoenix_test, :base_url, ExampleWeb.Endpoint.url())
 ExUnit.start()

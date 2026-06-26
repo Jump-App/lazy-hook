@@ -1,0 +1,35 @@
+{
+  "name": "lazy-hook",
+  "version": "1.0.0",
+  "files": [
+    "dist/index.js",
+    "index.d.ts",
+    "phoenix_live_view.augment.d.ts",
+    "README.md"
+  ],
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "devDependencies": {
+    "@happy-dom/global-registrator": "^20.10.6",
+    "@types/bun": "latest",
+    "phoenix_live_view": "1.2.3",
+    "typescript": "^5.8.3"
+  },
+  "peerDependencies": {
+    "phoenix_live_view": "1.2.3"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist ../lazy-hook-package.tgz && echo 'done.'",
+    "check": "bun run --bun tsc",
+    "build": "bun build ./index.ts --outdir ./dist --packages external",
+    "pack:local": "bun run build && bun pm pack --filename ../lazy-hook-package.tgz --ignore-scripts",
+    "prepack": "bun run build",
+    "test": "bun test",
+    "watch": "bun run build -- --watch"
+  }
+}
