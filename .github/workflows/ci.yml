@@ -25,5 +25,10 @@ jobs:
             bun run check
             bun run build
             bun test
+            bun run pack:check
             cd ../example
+            mix deps.get
+            cd assets
+            bun run check:lazy-hook-lock
+            cd ..
             mix precommit

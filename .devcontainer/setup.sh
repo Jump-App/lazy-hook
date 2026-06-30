@@ -4,10 +4,12 @@ set -euo pipefail
 echo "Installing dependencies..."
 cd lazy-hook
 bun install
-bun run pack:local
+bun run build
 
 echo "Setting up example application..."
-cd ../example/assets
+cd ../example
+mix deps.get
+cd assets
 bun install
 bun run playwright install chromium --with-deps
 cd ..

@@ -24,7 +24,7 @@
     "phoenix_live_view": "1.2.3"
   },
   "scripts": {
-    "clean": "rm -rf ./dist ../lazy-hook-package.tgz && echo 'done.'",
+    "clean": "rm -rf ./dist && echo 'done.'",
     "check": "bun run --bun tsc",
     "build": "bun build ./index.ts --outdir ./dist --packages external",
     "pack:local": "bun run build && bun pm pack --filename ../lazy-hook-package.tgz --ignore-scripts",
