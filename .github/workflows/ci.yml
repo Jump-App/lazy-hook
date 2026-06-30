@@ -20,15 +20,4 @@ jobs:
         with:
           configFile: .devcontainer/devcontainer.json
           push: never
-          runCmd: |
-            cd lazy-hook
-            bun run check
-            bun run build
-            bun test
-            bun run pack:check
-            cd ../example
-            mix deps.get
-            cd assets
-            bun run check:lazy-hook-lock
-            cd ..
-            mix precommit
+          runCmd: ./scripts/check.sh

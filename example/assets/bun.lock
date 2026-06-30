@@ -974,7 +974,7 @@
 
     "konan": ["konan@2.1.1", "", { "dependencies": { "@babel/parser": "^7.10.5", "@babel/traverse": "^7.10.5" } }, "sha512-7ZhYV84UzJ0PR/RJnnsMZcAbn+kLasJhVNWsu8ZyVEJYRpGA5XESQ9d/7zOa08U0Ou4cmB++hMNY/3OSV9KIbg=="],
 
-    "lazy-hook": ["lazy-hook@../../lazy-hook-package.tgz", { "peerDependencies": { "phoenix_live_view": "1.2.3" } }, "sha512-zMzLl7KuaYwDCcon/bOoXrhuI9kgmRoVtFVTL4AfO78So05+9b/Gdjf/PI8YjkXJntYM3fVk/R+2trvv5+8u/Q=="],
+    "lazy-hook": ["lazy-hook@../../lazy-hook-package.tgz", { "peerDependencies": { "phoenix_live_view": "1.2.3" } }, "sha512-ivFBKlP5ND293Ld2obET0DbvykaiAn/TZyPGWvznPFvIAi6YLZImuPp1tyylLQZHb/9IaH2E924PdcbNLOTFgw=="],
 
     "leven": ["leven@3.1.0", "", {}, "sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A=="],
 
