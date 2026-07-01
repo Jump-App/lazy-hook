@@ -5,6 +5,7 @@ node_modules
 out
 dist
 index.d.ts
+lazy-hook/README.md
 
 # code coverage
 coverage

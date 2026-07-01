@@ -28,7 +28,7 @@
     "check": "bun run --bun tsc",
     "build": "bun build ./index.ts --outdir ./dist --packages external",
     "pack:local": "bun run build && bun pm pack --filename ../lazy-hook-package.tgz --ignore-scripts",
-    "prepack": "bun run build",
+    "prepack": "bun run build && cp ../README.md ./README.md",
     "test": "bun test",
     "watch": "bun run build -- --watch"
   }
