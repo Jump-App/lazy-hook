@@ -36,7 +36,7 @@ default: [
 For a default export:
 
 ```diff
-+ import { lazyHook } from "lazy-hook";
++ import { lazyHook } from "@jump-app/lazy-hook";
 - import ExampleHook from "./hooks/example";
 
 + const ExampleHook = lazyHook(() => import("./hooks/example"));
@@ -52,7 +52,7 @@ liveSocket.connect();
 For a named export, pass the export name as the second argument:
 
 ```diff
-+ import { lazyHook } from "lazy-hook";
++ import { lazyHook } from "@jump-app/lazy-hook";
 - import { ExampleNamedHook } from "./hooks/example";
 
 + const ExampleNamedHook = lazyHook(() => import("./hooks/example"), "ExampleNamedHook");

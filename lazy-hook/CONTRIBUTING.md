@@ -1,6 +1,6 @@
-# lazy-hook package
+# @jump-app/lazy-hook package
 
-Source for the published `lazy-hook` package. The repository root README covers installation and usage; this file covers local development.
+Source for the published `@jump-app/lazy-hook` package. The repository root README covers installation and usage; this file covers local development.
 
 ## Local development
 
@@ -19,4 +19,4 @@ bun run pack:local
 
 This writes `../lazy-hook-package.tgz`.
 
-If `../example/assets` has already installed the tarball, reinstall `lazy-hook` there or refresh `../example/assets/bun.lock`; otherwise Bun may continue using a cached copy.
+Be sure to refresh `../example/assets/bun.lock`, otherwise Bun will continue using a cached copy.

@@ -1,5 +1,5 @@
 {
-  "name": "lazy-hook",
+  "name": "@jump-app/lazy-hook",
   "version": "1.0.0",
   "files": [
     "dist/index.js",

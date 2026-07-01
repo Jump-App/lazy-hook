@@ -1,4 +1,4 @@
-import { lazyHook } from "lazy-hook";
+import { lazyHook } from "@jump-app/lazy-hook";
 const ExampleHook = lazyHook(() => import("./hooks/example"));
 
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
