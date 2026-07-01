@@ -72,7 +72,7 @@ You do not need to change the hook implementation itself.
 
 ## Example loading waterfall
 
-These traces show the effect of moving heavy hooks out of the initial bundle. Network and CPU throttling are enabled here to make the difference easier to see. Compare the LCP (largest contentful paint) and `load` markers.
+These traces show the effect of moving heavy hooks out of the initial bundle, on an actual user-facing page in [Jump's](https://jump.ai) Phoenix application. Network and CPU throttling are enabled here to make the difference easier to see.
 
 ### Before
 
