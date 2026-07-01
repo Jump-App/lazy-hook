@@ -7,7 +7,7 @@ Because LiveView expects hooks to be registered synchronously at startup, `lazy-
 ## Install
 
 ```bash
-npm install lazy-hook
+npm install @jump-app/lazy-hook
 ```
 
 ## Quick start
@@ -76,8 +76,8 @@ These traces show the effect of moving heavy hooks out of the initial bundle, on
 
 ### Before
 
-![Screenshot of Chrome DevTools performance tab with a single app.js bundle](assets/Before.png)
+![Screenshot of Chrome DevTools performance tab with a single app.js bundle](https://cdn.jsdelivr.net/gh/Jump-App/lazy-hook@27b9da3a5fc21b6cef6e701dbade61238bc961a9/assets/Before.png)
 
 ### After
 
-![Screenshot of Chrome DevTools performance tab with LiveView hooks split into chunks via lazy-hook](assets/After.png)
+![Screenshot of Chrome DevTools performance tab with LiveView hooks split into chunks via lazy-hook](https://cdn.jsdelivr.net/gh/Jump-App/lazy-hook@27b9da3a5fc21b6cef6e701dbade61238bc961a9/assets/After.png)
