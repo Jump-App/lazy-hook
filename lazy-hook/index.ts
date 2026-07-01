@@ -32,19 +32,6 @@ type LazyHookState = {
 
 const stateByHook = new WeakMap<ViewHook, LazyHookState>();
 
-export function stateFor(hook: ViewHook): LazyHookState {
-  const existing = stateByHook.get(hook);
-  if (existing) return existing;
-
-  const state: LazyHookState = {
-    destroyed: false,
-    queuedUpdated: false,
-  };
-
-  stateByHook.set(hook, state);
-  return state;
-}
-
 function isViewHookClass(definition: unknown): definition is ViewHookClass {
   return (
     typeof definition === "function" && definition.prototype instanceof ViewHook
@@ -95,6 +82,19 @@ function replaceLazyHookInView(
 
   delete registry[previousKey];
   registry[newKey] = realHook;
+}
+
+export function stateFor(hook: ViewHook): LazyHookState {
+  const existing = stateByHook.get(hook);
+  if (existing) return existing;
+
+  const state: LazyHookState = {
+    destroyed: false,
+    queuedUpdated: false,
+  };
+
+  stateByHook.set(hook, state);
+  return state;
 }
 
 export function lazyHook(load: ViewHookLoader<"default">): ViewHookClass;
