@@ -9,4 +9,4 @@ To run it:
 3. Run `mix setup` to install Elixir dependencies.
 4. Start the Phoenix endpoint with `mix phx.server`.
 
-Then visit [`localhost:4000`](http://localhost:4000).
+Then visit [`localhost:4040`](http://localhost:4040).
