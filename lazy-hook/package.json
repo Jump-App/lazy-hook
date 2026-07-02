@@ -17,11 +17,11 @@
   "devDependencies": {
     "@happy-dom/global-registrator": "^20.10.6",
     "@types/bun": "latest",
-    "phoenix_live_view": "1.2.3",
+    "phoenix_live_view": "^1.2.5",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "phoenix_live_view": "1.2.3"
+    "phoenix_live_view": "^1.2.5"
   },
   "scripts": {
     "clean": "rm -rf ./dist && echo 'done.'",

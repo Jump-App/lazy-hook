@@ -7,11 +7,11 @@
       "devDependencies": {
         "@happy-dom/global-registrator": "^20.10.6",
         "@types/bun": "latest",
-        "phoenix_live_view": "1.2.3",
+        "phoenix_live_view": "^1.2.5",
         "typescript": "^5.8.3",
       },
       "peerDependencies": {
-        "phoenix_live_view": "1.2.3",
+        "phoenix_live_view": "^1.2.5",
       },
     },
   },
@@ -36,7 +36,7 @@
 
     "morphdom": ["morphdom@2.7.8", "", {}, "sha512-D/fR4xgGUyVRbdMGU6Nejea1RFzYxYtyurG4Fbv2Fi/daKlWKuXGLOdXtl+3eIwL110cI2hz1ZojGICjjFLgTg=="],
 
-    "phoenix_live_view": ["phoenix_live_view@1.2.3", "", { "dependencies": { "morphdom": "2.7.8" } }, "sha512-QAva/EUJYwVrpKUfXWc560742o2751jhOulHY7tOu24EDkfobH6Bayp/u/bHjqE1Pqb2TURv+57H/OVl7qq0gQ=="],
+    "phoenix_live_view": ["phoenix_live_view@1.2.5", "", { "dependencies": { "morphdom": "2.7.8" } }, "sha512-XOcfiE8UuapvBwUR+hIJAtvvAl30x92NWrNAEY0j8t7a2uywnLf/wSFJVPmS4SZylsOXpVxLPUZlcG7qC/3Law=="],
 
     "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
