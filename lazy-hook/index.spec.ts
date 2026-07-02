@@ -6,9 +6,12 @@ import { lazyHook, stateFor } from "./index";
 type TestView = {
   viewHooks: Record<string, ViewHook | undefined>;
 };
-type ViewHookClass = new (
-  ...args: ConstructorParameters<typeof ViewHook>
-) => ViewHook;
+type ViewHookConstructorArgs<E extends HTMLElement = HTMLElement> = [
+  view: TestView | null,
+  el: E,
+  callbacks?: unknown,
+];
+type ViewHookClass = new (...args: ViewHookConstructorArgs) => ViewHook;
 type DefaultHookModule = { default: ViewHookClass };
 
 function createHook(Hook: ViewHookClass) {
@@ -17,7 +20,7 @@ function createHook(Hook: ViewHookClass) {
   el.id = `lazy-hook-${crypto.randomUUID()}`;
   document.body.appendChild(el);
 
-  const hook = new Hook(view as ConstructorParameters<typeof ViewHook>[0], el);
+  const hook = new Hook(view, el);
   const hookId = ViewHook.elementID(el);
   view.viewHooks[String(hookId)] = hook;
 
@@ -100,7 +103,7 @@ describe("lazyHook", () => {
     let resolveModule: (module: DefaultHookModule) => void;
 
     class RealHook extends ViewHook {
-      constructor(...args: ConstructorParameters<typeof ViewHook>) {
+      constructor(...args: ViewHookConstructorArgs) {
         super(...args);
         constructorCalls += 1;
       }

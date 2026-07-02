@@ -1,5 +1,9 @@
 import { ViewHook } from "phoenix_live_view";
 
+type ViewLike = {
+  isDead?: boolean;
+  viewHooks: Record<string, ViewHook | undefined>;
+};
 type ViewHookLifecycle =
   | "mounted"
   | "beforeUpdate"
@@ -7,9 +11,12 @@ type ViewHookLifecycle =
   | "destroyed"
   | "disconnected"
   | "reconnected";
-type ViewHookClass = new (
-  ...args: ConstructorParameters<typeof ViewHook>
-) => ViewHook;
+type ViewHookConstructorArgs<E extends HTMLElement = HTMLElement> = [
+  view: ViewLike | null,
+  el: E,
+  callbacks?: unknown,
+];
+type ViewHookClass = new (...args: ViewHookConstructorArgs) => ViewHook;
 type ViewHookModule<ExportName extends string> = Record<
   ExportName,
   ViewHookClass
@@ -18,7 +25,7 @@ type ViewHookModule<ExportName extends string> = Record<
 type ViewHookLoader<ExportName extends string> = () => Promise<
   ViewHookModule<ExportName>
 >;
-type LiveView = NonNullable<ConstructorParameters<typeof ViewHook>[0]>;
+type LiveView = NonNullable<ViewHookConstructorArgs[0]>;
 type ViewHookRegistry = LiveView["viewHooks"] &
   Record<string, ViewHook | undefined>;
 type LiveViewWithHookRegistry = LiveView & { viewHooks: ViewHookRegistry };
@@ -132,9 +139,9 @@ export function lazyHook<ExportName extends string>(
   return class LazyHook<
     E extends HTMLElement = HTMLElement,
   > extends ViewHook<E> {
-    private readonly view: LiveView;
+    private readonly view: LiveView | null;
 
-    constructor(...args: ConstructorParameters<typeof ViewHook>) {
+    constructor(...args: ViewHookConstructorArgs<E>) {
       super(...args);
       this.view = args[0];
     }

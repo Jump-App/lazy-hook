@@ -20,9 +20,9 @@ declare module "phoenix_live_view" {
 
   export class ViewHook<E extends HTMLElement = HTMLElement> {
     el: E;
-    liveSocket: unknown;
+    liveSocket: LiveSocket;
 
-    constructor(view: ViewLike, el: any, callbacks?: unknown);
+    constructor(view: ViewLike | null, el: E, callbacks?: unknown);
 
     static makeID(): number;
     static elementID(el: HTMLElement): string | number | null | undefined;
@@ -35,7 +35,9 @@ declare module "phoenix_live_view" {
     disconnected(): void;
     reconnected(): void;
 
-    js(): unknown;
+    js(): HookInterface<E>["js"] extends (...args: never[]) => infer T
+      ? T
+      : never;
 
     pushEvent(event: string, payload: unknown, onReply: OnReply): void;
     pushEvent(event: string, payload?: unknown): Promise<any>;
