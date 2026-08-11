@@ -32,7 +32,13 @@ jobs:
 
       # `main` is kept at zero high-severity findings, so a red check means the
       # finding comes from this PR.
+      #
+      # GH_TOKEN enables the online audits. Without it zizmor silently runs in
+      # offline mode and skips the known-vulnerable-action and stale-ref lookups,
+      # which is a weaker gate that still reports green.
       - name: Audit GitHub Actions workflows
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: >-
           uvx "zizmor@${ZIZMOR_VERSION}"
           --format=github
