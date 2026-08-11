@@ -1,0 +1,18 @@
+version: 2
+
+updates:
+  # Keeps the SHA-pinned `uses:` clauses in .github/workflows fresh. Without this,
+  # pinning actions to hashes trades a floating-tag problem for a silently-stale-pin
+  # problem.
+  - package-ecosystem: github-actions
+    # Wait a week before picking up a new release, so a compromised or yanked
+    # version is not pulled in the moment it is published.
+    cooldown:
+      default-days: 7
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns: ["*"]
+    open-pull-requests-limit: 3
