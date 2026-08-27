@@ -7,11 +7,11 @@
       "devDependencies": {
         "@happy-dom/global-registrator": "^20.10.6",
         "@types/bun": "latest",
-        "phoenix_live_view": "^1.2.5",
+        "phoenix_live_view": "^1.2.11",
         "typescript": "^5.8.3",
       },
       "peerDependencies": {
-        "phoenix_live_view": "^1.2.5",
+        "phoenix_live_view": "^1.2.11",
       },
     },
   },
@@ -34,9 +34,7 @@
 
     "happy-dom": ["happy-dom@20.10.6", "", { "dependencies": { "@types/node": ">=20.0.0", "@types/whatwg-mimetype": "^3.0.2", "@types/ws": "^8.18.1", "buffer-image-size": "^0.6.4", "entities": "^7.0.1", "whatwg-mimetype": "^3.0.0", "ws": "^8.21.0" } }, "sha512-6QD0ilzDDt93tX44y8tbmZdAcdTRYDhUP+Asgi6pC8Pp5IA3cvaZGyoVN/EGtlq9ziT65iPuBBn3ASLr6hCgVw=="],
 
-    "morphdom": ["morphdom@2.7.8", "", {}, "sha512-D/fR4xgGUyVRbdMGU6Nejea1RFzYxYtyurG4Fbv2Fi/daKlWKuXGLOdXtl+3eIwL110cI2hz1ZojGICjjFLgTg=="],
-
-    "phoenix_live_view": ["phoenix_live_view@1.2.5", "", { "dependencies": { "morphdom": "2.7.8" } }, "sha512-XOcfiE8UuapvBwUR+hIJAtvvAl30x92NWrNAEY0j8t7a2uywnLf/wSFJVPmS4SZylsOXpVxLPUZlcG7qC/3Law=="],
+    "phoenix_live_view": ["phoenix_live_view@1.2.11", "", {}, "sha512-52aAL+cW0IGxZT9QMEkN+3+pRfCTCBEQZUL6C1gRgAlqmOf15VkMFxISHX71IAj+Px7uQl31ROmYUsWXDUT95g=="],
 
     "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 

@@ -1,21 +1,7 @@
 import { ViewHook } from "phoenix_live_view";
 
-type ViewLike = {
-  isDead?: boolean;
-  viewHooks: Record<string, ViewHook | undefined>;
-};
-type ViewHookLifecycle =
-  | "mounted"
-  | "beforeUpdate"
-  | "updated"
-  | "destroyed"
-  | "disconnected"
-  | "reconnected";
-type ViewHookConstructorArgs<E extends HTMLElement = HTMLElement> = [
-  view: ViewLike | null,
-  el: E,
-  callbacks?: unknown,
-];
+type ViewHookConstructorArgs<E extends HTMLElement = HTMLElement> =
+  ConstructorParameters<typeof ViewHook<E>>;
 type ViewHookClass = new (...args: ViewHookConstructorArgs) => ViewHook;
 type ViewHookModule<ExportName extends string> = Record<
   ExportName,
@@ -26,9 +12,7 @@ type ViewHookLoader<ExportName extends string> = () => Promise<
   ViewHookModule<ExportName>
 >;
 type LiveView = NonNullable<ViewHookConstructorArgs[0]>;
-type ViewHookRegistry = LiveView["viewHooks"] &
-  Record<string, ViewHook | undefined>;
-type LiveViewWithHookRegistry = LiveView & { viewHooks: ViewHookRegistry };
+type ViewHookRegistry = Record<string, ViewHook | undefined>;
 
 type LazyHookState = {
   realHook?: ViewHook;
@@ -45,23 +29,26 @@ function isViewHookClass(definition: unknown): definition is ViewHookClass {
   );
 }
 
-function callLifecycle(hook: ViewHook, lifecycle: ViewHookLifecycle) {
-  const callback: (() => void) | undefined = hook[lifecycle];
-  if (typeof callback === "function") {
-    callback.call(hook);
-  }
-}
-
-function hasViewHookRegistry(
-  view: LiveView | null,
-): view is LiveViewWithHookRegistry {
+function isViewHookRegistry(value: unknown): value is ViewHookRegistry {
   return (
-    !!view && typeof view.viewHooks === "object" && view.viewHooks !== null
+    typeof value === "object" &&
+    value !== null &&
+    Object.values(value).every(
+      (hook) => hook === undefined || hook instanceof ViewHook,
+    )
   );
 }
 
-function viewHookRegistry(view: LiveView | null): ViewHookRegistry | undefined {
-  return hasViewHookRegistry(view) ? view.viewHooks : undefined;
+function viewHookRegistry(view: unknown): ViewHookRegistry | undefined {
+  if (
+    typeof view !== "object" ||
+    view === null ||
+    !("viewHooks" in view)
+  ) {
+    return undefined;
+  }
+
+  return isViewHookRegistry(view.viewHooks) ? view.viewHooks : undefined;
 }
 
 function replaceLazyHookInView(
@@ -158,10 +145,10 @@ export function lazyHook<ExportName extends string>(
           replaceLazyHookInView(this.view, this, realHook, previousHookId);
           state.realHook = realHook;
 
-          callLifecycle(realHook, "mounted");
+          realHook.mounted();
           if (state.queuedUpdated) {
             state.queuedUpdated = false;
-            callLifecycle(realHook, "updated");
+            realHook.updated();
           }
         })
         .catch((error) => {
@@ -172,17 +159,17 @@ export function lazyHook<ExportName extends string>(
         });
     }
 
-    override beforeUpdate() {
+    override beforeUpdate(toEl: E) {
       const realHook = stateFor(this).realHook;
       if (realHook) {
-        callLifecycle(realHook, "beforeUpdate");
+        realHook.beforeUpdate(toEl);
       }
     }
 
     override updated() {
       const state = stateFor(this);
       if (state.realHook) {
-        callLifecycle(state.realHook, "updated");
+        state.realHook.updated();
       } else {
         state.queuedUpdated = true;
       }
@@ -192,21 +179,21 @@ export function lazyHook<ExportName extends string>(
       const state = stateFor(this);
       state.destroyed = true;
       if (state.realHook) {
-        callLifecycle(state.realHook, "destroyed");
+        state.realHook.destroyed();
       }
     }
 
     override disconnected() {
       const realHook = stateFor(this).realHook;
       if (realHook) {
-        callLifecycle(realHook, "disconnected");
+        realHook.disconnected();
       }
     }
 
     override reconnected() {
       const realHook = stateFor(this).realHook;
       if (realHook) {
-        callLifecycle(realHook, "reconnected");
+        realHook.reconnected();
       }
     }
   };

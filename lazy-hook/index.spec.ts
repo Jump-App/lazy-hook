@@ -6,11 +6,8 @@ import { lazyHook, stateFor } from "./index";
 type TestView = {
   viewHooks: Record<string, ViewHook | undefined>;
 };
-type ViewHookConstructorArgs<E extends HTMLElement = HTMLElement> = [
-  view: TestView | null,
-  el: E,
-  callbacks?: unknown,
-];
+type ViewHookConstructorArgs<E extends HTMLElement = HTMLElement> =
+  ConstructorParameters<typeof ViewHook<E>>;
 type ViewHookClass = new (...args: ViewHookConstructorArgs) => ViewHook;
 type DefaultHookModule = { default: ViewHookClass };
 
@@ -20,6 +17,9 @@ function createHook(Hook: ViewHookClass) {
   el.id = `lazy-hook-${crypto.randomUUID()}`;
   document.body.appendChild(el);
 
+  // Phoenix's constructor accepts its internal View class, whose private
+  // members prevent a structural test double from satisfying the type.
+  // @ts-expect-error This fixture supplies the viewHooks behavior under test.
   const hook = new Hook(view, el);
   const hookId = ViewHook.elementID(el);
   view.viewHooks[String(hookId)] = hook;
@@ -59,10 +59,13 @@ describe("lazyHook", () => {
     await waitForLazyHookLoad(hook);
 
     const realHookId = ViewHook.elementID(el);
-    const realHook = view.viewHooks[String(realHookId)] as RealHook;
+    const realHook = view.viewHooks[String(realHookId)];
 
     expect(view.viewHooks[String(hookId)]).toBeUndefined();
     expect(realHook).toBeInstanceOf(RealHook);
+    if (!(realHook instanceof RealHook)) {
+      throw new Error("Expected the real hook to be registered");
+    }
     expect(realHook).not.toBe(hook);
     expect(realHook.callbackWasCalled).toBe(true);
   });
@@ -95,6 +98,27 @@ describe("lazyHook", () => {
     await waitForLazyHookLoad(hook);
 
     expect(lifecycleCalls).toEqual(["mounted", "updated"]);
+  });
+
+  it("forwards the pending element to beforeUpdate", async () => {
+    let receivedToEl: HTMLElement | undefined;
+
+    class RealHook extends ViewHook {
+      override beforeUpdate(toEl: HTMLElement) {
+        receivedToEl = toEl;
+      }
+    }
+
+    const LazyHook = lazyHook(() => Promise.resolve({ default: RealHook }));
+    const { hook } = createHook(LazyHook);
+
+    hook.mounted();
+    await waitForLazyHookLoad(hook);
+
+    const toEl = document.createElement("div");
+    hook.beforeUpdate(toEl);
+
+    expect(receivedToEl).toBe(toEl);
   });
 
   it("does not instantiate the real hook if the lazy placeholder is destroyed before loading finishes", async () => {

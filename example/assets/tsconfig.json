@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "module": "Preserve",
+    "moduleResolution": "bundler",
+    "preserveSymlinks": true,
     "allowJs": true,
     "noEmit": true
   },

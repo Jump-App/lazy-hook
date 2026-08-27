@@ -9,6 +9,8 @@
     "phoenix_live_view": "file:../deps/phoenix_live_view"
   },
   "devDependencies": {
-    "playwright": "^1.61.1"
+    "@types/phoenix": "^1.6.7",
+    "playwright": "^1.61.1",
+    "typescript": "^5.8.3"
   }
 }
