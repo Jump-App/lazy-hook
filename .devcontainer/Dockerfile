@@ -15,7 +15,7 @@ RUN usermod -aG sudo ubuntu \
 
 USER ubuntu
 
-RUN curl -fsSL https://bun.sh/install | bash
+RUN curl -fsSL https://bun.com/install | bash -s "bun-v1.3.14"
 RUN curl -fsSL https://elixir-lang.org/install.sh | sh -s -- elixir@1.20.2 otp@28.4
 
 USER root
